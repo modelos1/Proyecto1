@@ -1,4 +1,3 @@
-# Project
 # Digital Wallet Project
 
 ## Overview
