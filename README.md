@@ -28,14 +28,3 @@ Welcome to the **Digital Wallet Project** repository! This repository contains e
 2. **Research Paper**: Researchers and academics can refer to the `paper/` folder for an in-depth analysis of the project, covering the problem statement, solution design, and evaluation.
 3. **Poster**: The `poster/` folder provides a concise, visual overview of the project, ideal for quick reference or presentation purposes.
 
----
-
-## License
-
-This project is licensed under the MIT License. Please see the `LICENSE` file for more information.
-
----
-
-## Contact
-
-If you have any questions or would like to contribute to this project, feel free to reach out via email or open an issue in this repository.
