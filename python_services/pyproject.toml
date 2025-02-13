@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "backendpython"
+version = "0.1.0"
+description = ""
+authors = ["Julian <julianpulidoc2005@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.8"
+uvicorn = "^0.34.0"
+python-dotenv = "^1.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.3.4"
+pre-commit = "^4.1.0"
+pytest = "^8.3.4"
+black = "^25.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

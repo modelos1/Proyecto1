@@ -1,0 +1,11 @@
+{"accounts":[
+    {
+        "account_number": "123",
+        "balance": 1000
+    },
+    {
+        "account_number": "321",
+        "balance": 500
+    }
+    ]
+}

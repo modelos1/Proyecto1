@@ -1,0 +1,26 @@
+{
+    "transactions": [
+        {
+            "owner": "123",
+            "amount": 1000,
+            "timestamp": "2021-01-01T00:00:00Z",
+            "type": "deposit",
+            "status": "completed"
+            
+        },
+        {
+            "owner": "321",
+            "amount": 500,
+            "timestamp": "2021-01-02T00:00:00Z",
+            "type": "withdrawal",
+            "status": "completed"
+        },
+        {
+            "owner": "123",
+            "amount": 2000,
+            "timestamp": "2021-01-03T00:00:00Z",
+            "type": "deposit",
+            "status": "completed"
+        }
+    ]
+}
