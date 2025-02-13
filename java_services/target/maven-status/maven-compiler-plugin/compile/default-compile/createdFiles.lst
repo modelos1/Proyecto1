@@ -1,0 +1,6 @@
+com\example\digital_wallet\data_objects\UserDAO.class
+com\example\digital_wallet\services\UserServices.class
+com\example\digital_wallet\controllers\UserController.class
+com\example\digital_wallet\data_objects\AuthDTO.class
+com\example\digital_wallet\repositories\UserRepositories.class
+com\example\digital_wallet\DigitalWalletApplication.class
