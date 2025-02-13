@@ -7,7 +7,8 @@ This file is part of Proyecto1.
 
 import json
 from pydantic import BaseModel
-from transactions import TransactionsDAO
+from repositories.transactions import TransactionsDAO
+
 # pylint: disable=import-error
 from environment_variables import EnvironmentVariables
 
@@ -35,6 +36,8 @@ class TransferRepository:
         try:
             with open(path_file, "r", encoding="utf-8") as f:
                 self.data = json.load(f)
+                if not isinstance(self.data, dict) or "transactions" not in self.data:
+                    self.data = {"transactions": []}
         except (FileNotFoundError, json.JSONDecodeError) as e:
             print(e)
             self.data = []
@@ -52,28 +55,17 @@ class TransferRepository:
                 owner=transfer.sender,
                 amount=transfer.amount,
                 timestamp=transfer.timestamp,
-                type="transfer",
+                type="transfer sent",
                 status="completed",
             )
             transaction_receiver = TransactionsDAO(
                 owner=transfer.receiver,
                 amount=transfer.amount,
                 timestamp=transfer.timestamp,
-                type="transfer",
+                type="transfer received",
                 status="completed",
             )
-            self.data.append(transaction_sender.dict())
-            self.data.append(transaction_receiver.dict())
-            self._save_data()
-        else:
-            transaction_sender = TransactionsDAO(
-                owner=transfer.sender,
-                amount=transfer.amount,
-                timestamp=transfer.timestamp,
-                type="transfer",
-                status="completed",
-            )
-            self.data.append(transaction_sender.dict())
+            self.data["transactions"].append(transaction_sender.dict())
+            self.data["transactions"].append(transaction_receiver.dict())
             self._save_data()
         return "The transfer has been created successfully."
-    

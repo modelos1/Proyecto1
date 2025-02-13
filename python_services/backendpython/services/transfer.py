@@ -17,15 +17,17 @@ class TransferService:
         self.transfer_repository = TransferRepository()
         self.account_repository = AccountRepository()
 
-    def transfer_money(self, transfer: TransferDAO):
+    def transfer_money(self, sender: str, receiver: str, amount: float):
         """This method is used to transfer money between accounts using a command.
 
         Args:
-            transfer (TransferDAO): The transfer object.
+            sender (str): The sender's account identifier.
+            receiver (str): The receiver's account identifier.
+            amount (float): The amount of money to transfer.
         """
-        sender_account = transfer.sender
-        receiver_account = transfer.receiver
-        amount = transfer.amount
+        sender_account = sender
+        receiver_account = receiver
+        amount = amount
 
         if sender_account == receiver_account:
             raise HTTPException(

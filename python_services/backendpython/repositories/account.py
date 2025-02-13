@@ -45,6 +45,7 @@ class AccountRepository:
 
     def get_actual_account(self, phone_number: str) -> ActualAccountDAO:
         """This method is used to get the actual account."""
+        self._load_data(EnvironmentVariables().path_account_data)
         if isinstance(self.data, dict) and "accounts" in self.data:
             accounts_list = self.data["accounts"]
         else:
@@ -52,15 +53,16 @@ class AccountRepository:
             return None
         for account in accounts_list:
             if str(account["account_number"]) == str(phone_number):
-                        return ActualAccountDAO(
-                            account_number=account.get("account_number", "Unknown"),
-                            balance=account.get("balance", 0.0),
-                        )
+                return ActualAccountDAO(
+                    account_number=account.get("account_number", "Unknown"),
+                    balance=account.get("balance", 0.0),
+                )
         print("Error: account not found.")
         return None
 
     def update_balance(self, phone_number: str, amount: float, type_transaction: str):
         """This method is used to update the balance of the account."""
+        self._load_data(EnvironmentVariables().path_account_data)
         if isinstance(self.data, dict) and "accounts" in self.data:
             accounts_list = self.data["accounts"]
         else:

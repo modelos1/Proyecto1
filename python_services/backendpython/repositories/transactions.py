@@ -35,6 +35,8 @@ class TransactionsRepository:
         try:
             with open(path_file, "r", encoding="utf-8") as f:
                 self.data = json.load(f)
+                if not isinstance(self.data, dict) or "transactions" not in self.data:
+                    self.data = {"transactions": []}
         except Exception as e:
             print(e)
             self.data = []
@@ -47,6 +49,7 @@ class TransactionsRepository:
 
     def get_transactions(self) -> List[TransactionsDAO]:
         """This method is used to get all transactions."""
+        self._load_data(EnvironmentVariables().path_transactions_data)
         transactions = []
         if isinstance(self.data, dict) and "transactions" in self.data:
             transactions_list = self.data["transactions"]  # Extract transactions list
@@ -77,6 +80,7 @@ class TransactionsRepository:
 
     def create_transaction(self, transaction: TransactionsDAO) -> TransactionsDAO:
         """This method is used to create a transaction."""
-        self.data.append(transaction.model_dump())
+        self._load_data(EnvironmentVariables().path_transactions_data)
+        self.data["transactions"].append(transaction.model_dump())
         self._save_data()
         return transaction
