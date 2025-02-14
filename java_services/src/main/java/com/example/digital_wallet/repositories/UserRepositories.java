@@ -47,6 +47,7 @@ public class UserRepositories {
                     jsonObject.getString("password"));
                 this.users.add(user);
             }
+            System.out.println("Users loaded: " + this.users);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,6 +71,7 @@ public class UserRepositories {
      * @return The user data transfer object (DTO) if the authentication is successful.
      */
     public Optional<UserDAO> login(AuthDTO authData) {
+        loadData();
         for (UserDAO user : this.users) {
             if (user.phone_number.equals(authData.getPhone_number()) && user.password.equals(authData.getPassword())) {
                 return Optional.of(user);

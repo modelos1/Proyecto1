@@ -5,11 +5,12 @@
  */
 package com.example.digital_wallet.controllers;
 
-import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import com.example.digital_wallet.data_objects.*;
 import com.example.digital_wallet.services.UserServices;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/users")
@@ -32,8 +33,13 @@ public class UserController {
      * @return The user data transfer object (DTO) if the authentication is successful.
      */
     @PostMapping("/login")
-    public Optional<UserDAO> login(@RequestBody AuthDTO authData) {
-        return userServices.login(authData);
+    public ResponseEntity<?> login(@RequestBody AuthDTO authData) {
+    Optional<UserDAO> user = userServices.login(authData);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get()); // Devuelve el usuario si lo encuentra
+        } else {
+            return ResponseEntity.status(401).body("Invalid credentials"); // Responde con 401 si no existe
+        }
     }
     /*
      * This method creates a new user.

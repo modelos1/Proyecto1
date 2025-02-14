@@ -1,10 +1,14 @@
-{
-    "users": [
+ [
         {
             "phone_number": "3013913663",
-            "name": "Juan",
-            "email": "juan@ud.com",
+            "name": "Julian",
+            "email": "julian@ud.com",
+            "password": "1234"
+        },
+        {
+            "phone_number": "12345",
+            "name": "David",
+            "email": "david@ud.com",
             "password": "1234"
         }
-    ]
-}
+]

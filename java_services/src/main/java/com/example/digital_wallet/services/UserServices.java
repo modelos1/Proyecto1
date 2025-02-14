@@ -4,11 +4,11 @@
  * Author: Julian David Pulido Carreño <judpulidoc@udistrital.edu.co>
  */
 package com.example.digital_wallet.services;
+import com.example.digital_wallet.data_objects.*;
+import com.example.digital_wallet.repositories.UserRepositories;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.digital_wallet.repositories.UserRepositories;
-import com.example.digital_wallet.data_objects.*;
 
 @Service
 public class UserServices {
@@ -36,7 +36,16 @@ public class UserServices {
         if (authData == null || authData.getPhone_number() == null || authData.getPassword() == null) {
             return Optional.empty();
         }
-        return userRepositories.login(authData);
+    
+        Optional<UserDAO> user = userRepositories.login(authData);
+    
+        if (user.isPresent()) {
+            System.out.println("User Authenticated: " + user.get());
+        } else {
+            System.out.println("Autentication failed for: " + authData.getPhone_number());
+        }
+    
+        return user;
     }
     /*
      * This method creates a new user.
