@@ -103,3 +103,10 @@ def transfer(receiver: str, amount: float, user: dict = Depends(get_user_authent
     if response.status_code == 200:
         return response.json()
     raise HTTPException(status_code=response.status_code, detail=response.json())
+
+@app.get("/logout")
+def logout(user: dict = Depends(get_user_authenticated)):
+    """This method is used to logout the user"""
+    phone_number = user["phone_number"]
+    sessions.pop(phone_number, None)
+    return {"message": "User logged out"}
