@@ -1,16 +1,24 @@
 /*
  * This file has the definition of the user endpoints for the digital wallet application.
- * Author: Julian David Pulido Carreño <judpulidoc@udistrital.edu.co>
+ * Author: mipapi <judpulidoc@udistrital.edu.co>
  * 
  */
 package com.example.digital_wallet.controllers;
 
-import com.example.digital_wallet.data_objects.*;
-import com.example.digital_wallet.services.UserServices;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.digital_wallet.data_objects.AuthDTO;
+import com.example.digital_wallet.data_objects.UserDAO;
+import com.example.digital_wallet.services.UserServices;
 
 @RestController
 @RequestMapping("v1/users")
